@@ -4,18 +4,32 @@
 #
 Name     : R-haplo.stats
 Version  : 1.7.9
-Release  : 8
+Release  : 9
 URL      : https://cran.r-project.org/src/contrib/haplo.stats_1.7.9.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/haplo.stats_1.7.9.tar.gz
 Summary  : Statistical Analysis of Haplotypes with Traits and Covariates
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
-Requires: R-haplo.stats-lib
+Requires: R-haplo.stats-lib = %{version}-%{release}
+Requires: R-Formula
+Requires: R-Hmisc
+Requires: R-MatrixModels
+Requires: R-SparseM
 Requires: R-TH.data
+Requires: R-htmlTable
+Requires: R-mvtnorm
+Requires: R-polspline
 Requires: R-rms
+BuildRequires : R-Formula
+BuildRequires : R-Hmisc
+BuildRequires : R-MatrixModels
+BuildRequires : R-SparseM
 BuildRequires : R-TH.data
+BuildRequires : R-htmlTable
+BuildRequires : R-mvtnorm
+BuildRequires : R-polspline
 BuildRequires : R-rms
-BuildRequires : clr-R-helpers
+BuildRequires : buildreq-R
 
 %description
 No detailed description available
@@ -36,11 +50,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530472544
+export SOURCE_DATE_EPOCH=1552895570
 
 %install
+export SOURCE_DATE_EPOCH=1552895570
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1530472544
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -58,9 +72,9 @@ echo "FFLAGS = $FFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 echo "CXXFLAGS = $CXXFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library haplo.stats
 for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx2 ; mv $i.avx2 ~/.stash/; done
-echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize -mprefer-vector-width=512 " > ~/.R/Makevars
-echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize -mprefer-vector-width=512 " >> ~/.R/Makevars
-echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize -mprefer-vector-width=512  " >> ~/.R/Makevars
+echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --preclean --install-tests --no-test-load --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library haplo.stats
 for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx512 ; mv $i.avx512 ~/.stash/; done
 echo "CFLAGS = $CFLAGS -ftree-vectorize " > ~/.R/Makevars
@@ -75,8 +89,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library haplo.stats|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  haplo.stats || :
 
 
 %files
