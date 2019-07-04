@@ -4,54 +4,35 @@
 #
 Name     : R-haplo.stats
 Version  : 1.7.9
-Release  : 12
+Release  : 13
 URL      : https://cran.r-project.org/src/contrib/haplo.stats_1.7.9.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/haplo.stats_1.7.9.tar.gz
 Summary  : Statistical Analysis of Haplotypes with Traits and Covariates
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
 Requires: R-haplo.stats-lib = %{version}-%{release}
-Requires: R-RColorBrewer
-Requires: R-Rcpp
+Requires: R-Hmisc
+Requires: R-TH.data
 Requires: R-acepack
-Requires: R-backports
-Requires: R-checkmate
-Requires: R-htmltools
-Requires: R-htmlwidgets
-Requires: R-pillar
-Requires: R-pkgconfig
-Requires: R-plyr
-Requires: R-quantreg
-Requires: R-rlang
-Requires: R-rstudioapi
-Requires: R-sandwich
-Requires: R-xfun
-Requires: R-zoo
-BuildRequires : R-Formula
+Requires: R-base64enc
+Requires: R-gridExtra
+Requires: R-htmlTable
+Requires: R-latticeExtra
+Requires: R-multcomp
+Requires: R-munsell
+Requires: R-polspline
+Requires: R-rms
 BuildRequires : R-Hmisc
-BuildRequires : R-MatrixModels
-BuildRequires : R-RColorBrewer
-BuildRequires : R-Rcpp
-BuildRequires : R-SparseM
 BuildRequires : R-TH.data
 BuildRequires : R-acepack
-BuildRequires : R-backports
-BuildRequires : R-checkmate
+BuildRequires : R-base64enc
+BuildRequires : R-gridExtra
 BuildRequires : R-htmlTable
-BuildRequires : R-htmltools
-BuildRequires : R-htmlwidgets
-BuildRequires : R-mvtnorm
-BuildRequires : R-pillar
-BuildRequires : R-pkgconfig
-BuildRequires : R-plyr
+BuildRequires : R-latticeExtra
+BuildRequires : R-multcomp
+BuildRequires : R-munsell
 BuildRequires : R-polspline
-BuildRequires : R-quantreg
-BuildRequires : R-rlang
 BuildRequires : R-rms
-BuildRequires : R-rstudioapi
-BuildRequires : R-sandwich
-BuildRequires : R-xfun
-BuildRequires : R-zoo
 BuildRequires : buildreq-R
 
 %description
@@ -72,13 +53,13 @@ lib components for the R-haplo.stats package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552932617
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562200573
 
 %install
-export SOURCE_DATE_EPOCH=1552932617
+export SOURCE_DATE_EPOCH=1562200573
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -107,12 +88,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  haplo.stats || :
+R CMD check --no-manual --no-examples --no-codoc haplo.stats || :
 
 
 %files
