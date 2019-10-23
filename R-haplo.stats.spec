@@ -4,23 +4,13 @@
 #
 Name     : R-haplo.stats
 Version  : 1.7.9
-Release  : 15
+Release  : 16
 URL      : https://cran.r-project.org/src/contrib/haplo.stats_1.7.9.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/haplo.stats_1.7.9.tar.gz
 Summary  : Statistical Analysis of Haplotypes with Traits and Covariates
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
 Requires: R-haplo.stats-lib = %{version}-%{release}
-Requires: R-Hmisc
-Requires: R-TH.data
-Requires: R-acepack
-Requires: R-base64enc
-Requires: R-gridExtra
-Requires: R-htmlTable
-Requires: R-latticeExtra
-Requires: R-multcomp
-Requires: R-munsell
-Requires: R-polspline
 Requires: R-rms
 BuildRequires : R-Hmisc
 BuildRequires : R-TH.data
@@ -34,6 +24,7 @@ BuildRequires : R-munsell
 BuildRequires : R-polspline
 BuildRequires : R-rms
 BuildRequires : buildreq-R
+BuildRequires : util-linux
 
 %description
 No detailed description available
@@ -54,10 +45,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562200573
+export SOURCE_DATE_EPOCH=1571841444
 
 %install
-export SOURCE_DATE_EPOCH=1562200573
+export SOURCE_DATE_EPOCH=1571841444
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
