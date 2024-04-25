@@ -7,7 +7,7 @@
 #
 Name     : R-haplo.stats
 Version  : 1.9.5.1
-Release  : 49
+Release  : 50
 URL      : https://cran.r-project.org/src/contrib/haplo.stats_1.9.5.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/haplo.stats_1.9.5.1.tar.gz
 Summary  : Statistical Analysis of Haplotypes with Traits and Covariates
